@@ -1,4 +1,3 @@
-const { request, response } = require('express');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -35,7 +34,7 @@ router.get('/', (request, response, next) => {
             response.status(500).json({
                 error: error
             });
-        })
+        });
 });
 
 router.post('/', (request, response, next) => {
