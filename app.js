@@ -1,4 +1,3 @@
-const { request, response } = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,6 +6,7 @@ const app = express();
 
 const productsRoutes = require('./api/routes/products');
 const ordersRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect('mongodb+srv://api-node:' + process.env.MONGO_ATLAS_PW + '@api-db.q8bkl.mongodb.net/<dbname>?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -36,6 +36,7 @@ app.use((request, response, next) => {
 
 app.use('/products', productsRoutes);
 app.use('/orders', ordersRoutes);
+app.use('/user', userRoutes);
 
 app.use((request, response, next) => {
     const error = new Error('Not found');
